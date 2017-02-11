@@ -1,12 +1,27 @@
-﻿<Window x:Class="Cookr.wpf.MainWindow"
+﻿<RibbonWindow x:Class="Cookr.wpf.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cookr.wpf"
         mc:Ignorable="d"
-        Title="Cookr" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
-</Window>
+        Title="Cookr" Height="450" Width="800">
+    <DockPanel LastChildFill="True">
+        <Ribbon DockPanel.Dock="Top">
+            <RibbonTab Header="Recipes">
+                <RibbonGroup Header="Recipes">
+                    <RibbonButton Label="Add" />
+                    <RibbonButton Label="Remove" />
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+        <DockPanel LastChildFill="True">
+            <GroupBox Header="Recipes" DockPanel.Dock="Left" MinWidth="250">
+                <ListView />
+            </GroupBox>
+            <GroupBox Header="Details" DockPanel.Dock="Right">
+            
+            </GroupBox>
+        </DockPanel>
+    </DockPanel>
+</RibbonWindow>

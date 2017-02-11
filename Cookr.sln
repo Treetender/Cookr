@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cookr.droid", "Cookr.Droid\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cookr.wpf", "Cookr.wpf\Cookr.wpf.csproj", "{0E816802-0EEA-4820-A593-AA4041239882}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cookr.lib", "Cookr.Lib\Cookr.lib.csproj", "{C7E41DFA-5F69-407E-83C2-71929DD4C947}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,18 @@ Global
 		{0E816802-0EEA-4820-A593-AA4041239882}.Release|x64.Build.0 = Release|Any CPU
 		{0E816802-0EEA-4820-A593-AA4041239882}.Release|x86.ActiveCfg = Release|Any CPU
 		{0E816802-0EEA-4820-A593-AA4041239882}.Release|x86.Build.0 = Release|Any CPU
+		{C7E41DFA-5F69-407E-83C2-71929DD4C947}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7E41DFA-5F69-407E-83C2-71929DD4C947}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7E41DFA-5F69-407E-83C2-71929DD4C947}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C7E41DFA-5F69-407E-83C2-71929DD4C947}.Debug|x64.Build.0 = Debug|Any CPU
+		{C7E41DFA-5F69-407E-83C2-71929DD4C947}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C7E41DFA-5F69-407E-83C2-71929DD4C947}.Debug|x86.Build.0 = Debug|Any CPU
+		{C7E41DFA-5F69-407E-83C2-71929DD4C947}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7E41DFA-5F69-407E-83C2-71929DD4C947}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7E41DFA-5F69-407E-83C2-71929DD4C947}.Release|x64.ActiveCfg = Release|Any CPU
+		{C7E41DFA-5F69-407E-83C2-71929DD4C947}.Release|x64.Build.0 = Release|Any CPU
+		{C7E41DFA-5F69-407E-83C2-71929DD4C947}.Release|x86.ActiveCfg = Release|Any CPU
+		{C7E41DFA-5F69-407E-83C2-71929DD4C947}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
