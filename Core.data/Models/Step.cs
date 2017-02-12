@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Cookr.lib.Models
+namespace Cookr.data.Models
 {
     public class Step
     {

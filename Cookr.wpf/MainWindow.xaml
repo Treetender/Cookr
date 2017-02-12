@@ -4,12 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cookr.wpf"
-        mc:Ignorable="d"
-        Title="Cookr" Height="450" Width="800">
+        mc:Ignorable="d" Title="Cookr" Height="450" Width="800">
+    <RibbonWindow.DataContext>
+        <local:RecipeViewModel />
+    </RibbonWindow.DataContext>
     <DockPanel LastChildFill="True">
         <Ribbon DockPanel.Dock="Top">
             <RibbonTab Header="Recipes">
                 <RibbonGroup Header="Recipes">
+                    <RibbonButton Label="Add" Command="{Binding AddRecipeCommand}" />
+                    <RibbonButton Label="Remove" />
+                </RibbonGroup>
+                <RibbonGroup Header="Ingredients">
+                    <RibbonButton Label="Add" Command="{Binding AddIngredientCommand}" />
+                    <RibbonButton Label="Remove" />
+                </RibbonGroup>
+                <RibbonGroup Header="Instructions">
                     <RibbonButton Label="Add" />
                     <RibbonButton Label="Remove" />
                 </RibbonGroup>
@@ -17,10 +27,25 @@
         </Ribbon>
         <DockPanel LastChildFill="True">
             <GroupBox Header="Recipes" DockPanel.Dock="Left" MinWidth="250">
-                <ListView />
+                <ListView ItemsSource="{Binding Recipes, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding SelectedRecipe, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </GroupBox>
-            <GroupBox Header="Details" DockPanel.Dock="Right">
-            
+            <GroupBox Header="{Binding SelectedRecipe.Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=''}" 
+                      HeaderStringFormat="{}{0} Details" DockPanel.Dock="Right">
+                <DockPanel LastChildFill="True">
+                    <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+                        <Label Content="{Binding SelectedRecipe.Category, FallbackValue='N/A'}" ContentStringFormat="Category: {0}" />
+                        <Label Content="{Binding SelectedRecipe.Ingredients.Count, FallbackValue=0}" ContentStringFormat="Total Ingredients: {0}" />
+                    </StackPanel>
+                    <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Bottom">
+                        <TabItem Header="Ingredients">
+                            <ListView ItemsSource="{Binding SelectedRecipe.Ingredients, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </TabItem>
+                        <TabItem Header="Instructions">
+                            <ListView ItemsSource="{Binding SelectedRecipe.Steps, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </TabItem>
+                    </TabControl>
+                </DockPanel>
             </GroupBox>
         </DockPanel>
     </DockPanel>

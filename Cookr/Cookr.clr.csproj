@@ -7,10 +7,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cookr.data\Cookr.data.csproj" />
+    <ProjectReference Include="..\Core.data\Core.data.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
-namespace Cookr.lib.Models
+namespace Cookr.data.Models
 {
     /// <summary>
     /// An ingredient for a Recipe with a given quantity and UoM

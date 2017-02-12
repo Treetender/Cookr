@@ -1,0 +1,59 @@
+﻿<Window x:Class="Cookr.wpf.AddRecipe.AddRecipeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cookr.wpf.AddRecipe"
+        mc:Ignorable="d"
+        Title="Add a New Recipe" Height="300" Width="525">
+    <Window.DataContext>
+        <local:AddRecipeViewModel />
+    </Window.DataContext>
+    <DockPanel LastChildFill="True">
+        <DockPanel LastChildFill="False" Background="{x:Static SystemColors.GradientActiveCaptionBrush}" MaxHeight="30" DockPanel.Dock="Bottom">
+            <Button Content="_Add" IsDefault="True" Margin="3" Width="{Binding ElementName=btnCancel, Path=ActualWidth}" 
+                    Command="{Binding AddRecipeCommand}"/>
+            <Button Content="_Cancel" IsCancel="True" DockPanel.Dock="Right" Margin="3" x:Name="btnCancel" Padding="3 0 3 0"
+                    Command="{Binding CloseWindowCommand}"/>
+        </DockPanel>
+        <GroupBox Header="Recipe Details">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="1.5*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Content="Name:" />
+                <TextBox Grid.Column="1" Margin="3" Text="{Binding Recipe.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Category:" Grid.Column="3" />
+                <ComboBox Grid.Column="4" Margin="3" ItemsSource="{Binding Categories, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding Recipe.Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <GroupBox Header="Ingredients" Grid.Row="1" Grid.ColumnSpan="5">
+                    <DockPanel LastChildFill="True">
+                        <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
+                            <Button Content="Add" Width="60" Command="{Binding AddIngredientCommand}" />
+                            <Button Content="Remove" DockPanel.Dock="Right" Width="60" Command="{Binding RemoveIngredientCommand}" />
+                        </DockPanel>
+                        <ListView ItemsSource="{Binding Recipe.Ingredients, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </DockPanel>
+                </GroupBox>
+                <GroupBox Header="Instructions" Grid.Row="2" Grid.ColumnSpan="5">
+                    <DockPanel LastChildFill="True">
+                        <DockPanel LastChildFill="False" DockPanel.Dock="Bottom">
+                            <Button Content="Add" Width="60" Command="{Binding AddStepCommand}" />
+                            <Button Content="Remove" DockPanel.Dock="Right" Width="60" Command="{Binding RemoveStepCommand}" />
+                        </DockPanel>
+                        <ListView ItemsSource="{Binding Recipe.Steps, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DockPanel>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+    </DockPanel>
+</Window>

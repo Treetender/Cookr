@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace Cookr.lib.Models
+namespace Cookr.data.Models
 {
     public class Recipe : IEquatable<Recipe>
     {
@@ -14,6 +14,9 @@ namespace Cookr.lib.Models
 
         public List<Step> Steps { get; set; }
         public List<Ingredient> Ingredients { get; set; }
+
+        [NotMapped]
+        public TimeSpan TotalTime => Steps == null ? new TimeSpan(0) : new TimeSpan(Steps.Sum(s => s.Time.Ticks));
 
         public bool Equals(Recipe other)
         {
