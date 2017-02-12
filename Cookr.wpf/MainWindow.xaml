@@ -13,7 +13,7 @@
             <RibbonTab Header="Recipes">
                 <RibbonGroup Header="Recipes">
                     <RibbonButton Label="Add" Command="{Binding AddRecipeCommand}" />
-                    <RibbonButton Label="Remove" />
+                    <RibbonButton Label="Remove" Command="{Binding RemoveRecipeCommand}" />
                 </RibbonGroup>
                 <RibbonGroup Header="Ingredients">
                     <RibbonButton Label="Add" Command="{Binding AddIngredientCommand}" />
@@ -34,7 +34,7 @@
                       HeaderStringFormat="{}{0} Details" DockPanel.Dock="Right">
                 <DockPanel LastChildFill="True">
                     <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
-                        <Label Content="{Binding SelectedRecipe.Category, FallbackValue='N/A'}" ContentStringFormat="Category: {0}" />
+                        <Label Content="{Binding SelectedRecipe.Category.Name, FallbackValue='N/A'}" ContentStringFormat="Category: {0}" />
                         <Label Content="{Binding SelectedRecipe.Ingredients.Count, FallbackValue=0}" ContentStringFormat="Total Ingredients: {0}" />
                     </StackPanel>
                     <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Bottom">

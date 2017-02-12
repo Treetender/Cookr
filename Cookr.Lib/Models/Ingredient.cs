@@ -29,5 +29,8 @@ namespace Cookr.lib.Models
         /// Parent Recipe
         /// </summary>
         public Recipe Recipe { get; set; }
+
+        public int UnitOfMeasureId { get; set; }
+        public int RecipeId { get; set; }
     }
 }

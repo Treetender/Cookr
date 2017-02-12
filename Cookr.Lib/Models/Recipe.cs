@@ -10,7 +10,8 @@ namespace Cookr.lib.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Category { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
 
         public List<Step> Steps { get; set; }
         public List<Ingredient> Ingredients { get; set; }
@@ -32,8 +33,8 @@ namespace Cookr.lib.Models
         public override int GetHashCode()
         {
             return 13 * Id.GetHashCode()
-                 ^ 29 * Name.GetHashCode()
-                 ^ 17 * Category.GetHashCode();
+                 ^ 29 * (Name?.GetHashCode() ?? 0)
+                 ^ 17 * (Category?.GetHashCode() ?? 0);
         }
 
         public static bool operator ==(Recipe r1, Recipe r2)
