@@ -31,7 +31,8 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Label Content="Name:" />
-                <TextBox Grid.Column="1" Margin="3" Text="{Binding Recipe.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"/>
+                <TextBox Grid.Column="1" Margin="3" Text="{Binding Recipe.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"
+                         SpellCheck.IsEnabled="True" />
                 <Label Content="Category:" Grid.Column="3" />
                 <ComboBox Grid.Column="4" Margin="3" ItemsSource="{Binding Categories, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding Recipe.Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -41,7 +42,8 @@
                             <Button Content="Add" Width="60" Command="{Binding AddIngredientCommand}" />
                             <Button Content="Remove" DockPanel.Dock="Right" Width="60" Command="{Binding RemoveIngredientCommand}" />
                         </DockPanel>
-                        <ListView ItemsSource="{Binding Recipe.Ingredients, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <ListView ItemsSource="{Binding Recipe.Ingredients, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedIngredient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </DockPanel>
                 </GroupBox>
                 <GroupBox Header="Instructions" Grid.Row="2" Grid.ColumnSpan="5">
@@ -50,7 +52,8 @@
                             <Button Content="Add" Width="60" Command="{Binding AddStepCommand}" />
                             <Button Content="Remove" DockPanel.Dock="Right" Width="60" Command="{Binding RemoveStepCommand}" />
                         </DockPanel>
-                        <ListView ItemsSource="{Binding Recipe.Steps, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ListView ItemsSource="{Binding Recipe.Steps, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding SelectedStep, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </DockPanel>
                 </GroupBox>
             </Grid>

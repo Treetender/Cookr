@@ -32,5 +32,7 @@ namespace Cookr.lib.Models
 
         public int UnitOfMeasureId { get; set; }
         public int RecipeId { get; set; }
+
+        public override string ToString() => $"{Name} x{Quantity} {UoM}";
     }
 }

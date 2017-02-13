@@ -8,8 +8,10 @@
         d:DataContext="{d:DesignInstance local:AddStepViewModel, IsDesignTimeCreatable=True}">
     <DockPanel LastChildFill="True">
         <DockPanel LastChildFill="False" DockPanel.Dock="Bottom" Background="{x:Static SystemColors.GradientActiveCaptionBrush}">
-            <Button Content="_Add" IsDefault="True" Margin="3" Width="{Binding ElementName=btnCancel, Path=ActualWidth}" />
-            <Button Content="_Cancel" IsCancel="True" Margin="3" Padding="3 0 3 0" DockPanel.Dock="Right" x:Name="btnCancel"/>
+            <Button Content="_Add" IsDefault="True" Margin="3" Width="{Binding ElementName=btnCancel, Path=ActualWidth}"
+                    Command="{Binding AddStepCommand, Mode=OneWay}"/>
+            <Button Content="_Cancel" IsCancel="True" Margin="3" Padding="3 0 3 0" DockPanel.Dock="Right" x:Name="btnCancel"
+                    Command="{Binding CloseWindowCommand}"/>
         </DockPanel>
         <Grid>
             <Grid.ColumnDefinitions>

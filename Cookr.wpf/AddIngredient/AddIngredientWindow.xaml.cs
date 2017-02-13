@@ -1,5 +1,6 @@
 ﻿using Cookr.lib.Models;
 using System.Windows;
+using System;
 
 namespace Cookr.wpf.AddIngredient
 {
@@ -8,19 +9,25 @@ namespace Cookr.wpf.AddIngredient
     /// </summary>
     public partial class AddIngredientWindow : Window
     {
-        private AddIngredientViewModel vm;
-
-        public Ingredient Ingredient => vm.Ingredient;
-
-        public AddIngredientWindow(Recipe ParentRecipe)
+        public AddIngredientWindow()
         {
             InitializeComponent();
-            vm = new AddIngredientViewModel(ParentRecipe);
-            vm.WindowClosing += (sender, e) =>
+            DataContextChanged += (sender, e) =>
             {
-                DialogResult = e;
-                Close();
+                var oldVM = e.OldValue as AddIngredientViewModel;
+                var newVM = e.NewValue as AddIngredientViewModel;
+
+                if (oldVM != null)
+                    oldVM.WindowClosing -= OnWindowClosing;
+                if (newVM != null)
+                    newVM.WindowClosing += OnWindowClosing;
             };
+        }
+
+        private void OnWindowClosing(object sender, bool e)
+        {
+            DialogResult = e;
+            Close();
         }
     }
 }

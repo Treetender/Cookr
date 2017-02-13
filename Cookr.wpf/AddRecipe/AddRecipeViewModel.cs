@@ -1,8 +1,10 @@
 ﻿using Cookr.lib.Models;
 using Cookr.Lib.Commands;
+using Cookr.wpf.AddIngredient;
 using Cookr.wpf.AddStep;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 
@@ -12,21 +14,23 @@ namespace Cookr.wpf.AddRecipe
     {
         public event EventHandler<bool> WindowClosing;
 
-        public ICommand AddRecipeCommand { get; set; }
-        public ICommand CloseWindowCommand { get; set; }
+        public ICommand AddRecipeCommand => new RelayCommand(c => AddRecipe(), p => CanAddRecipe());
+        public ICommand CloseWindowCommand => new RelayCommand(c => CloseWindow());
         public ICommand AddStepCommand => new RelayCommand(c => AddStep());
-        public ICommand RemoveStepCommand { get; set; }
-        public ICommand AddIngredientCommand { get; set; }
-        public ICommand RemoveIngredientCommand { get; set; }
+        public ICommand RemoveStepCommand => new RelayCommand(c => RemoveStep(), p => CanRemoveStep());
+        public ICommand AddIngredientCommand => new RelayCommand(c => AddIngredient());
+        public ICommand RemoveIngredientCommand => new RelayCommand(c => RemoveIngredient(), p => CanRemoveIngredient());
 
         public Recipe Recipe { get; private set; }
+        public Step SelectedStep { get; set; }
+        public Ingredient SelectedIngredient { get; set; }
         public IEnumerable<Category> Categories => DataManager.Instance.Categories;
 
         public AddRecipeViewModel()
         {
             Recipe = new Recipe();
-            Recipe.Ingredients = new List<Ingredient>();
-            Recipe.Steps = new List<Step>();
+            Recipe.Ingredients = new ObservableCollection<Ingredient>();
+            Recipe.Steps = new ObservableCollection<Step>();
         }
 
         private void CloseWindow() { WindowClosing?.Invoke(this, false); }
@@ -49,5 +53,21 @@ namespace Cookr.wpf.AddRecipe
                 Recipe.Steps.Add(vm.Step);
             }
         }
+
+        private void AddIngredient()
+        {
+            var vm = new AddIngredientViewModel(Recipe);
+            var win = new AddIngredientWindow() { DataContext = vm };
+            if (win.ShowDialog() ?? false)
+            {
+                Recipe.Ingredients.Add(vm.Ingredient);
+            }
+        }
+
+        private bool CanRemoveStep() { return SelectedStep != null; }
+        private void RemoveStep() { Recipe.Steps.Remove(SelectedStep); }
+
+        private bool CanRemoveIngredient() { return SelectedIngredient != null; }
+        private void RemoveIngredient() { Recipe.Ingredients.Remove(SelectedIngredient); }
     }
 }

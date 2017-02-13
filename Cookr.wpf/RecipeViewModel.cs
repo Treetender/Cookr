@@ -20,11 +20,11 @@ namespace Cookr.wpf
         private bool CanAddIngredient() { return SelectedRecipe != null; }
         private void AddIngredient()
         {
-            var win = new AddIngredientWindow(SelectedRecipe);
-            win.ShowDialog();
-            if(win.DialogResult ?? false)
+            var vm = new AddIngredientViewModel(SelectedRecipe);
+            var win = new AddIngredientWindow() { DataContext = vm };
+            if(win.ShowDialog() ?? false)
             {
-                SelectedRecipe.Ingredients.Add(win.Ingredient);
+                SelectedRecipe.Ingredients.Add(vm.Ingredient);
             }
         }
 

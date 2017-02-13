@@ -29,7 +29,7 @@
             <Button Content="Cancel" Margin="3" DockPanel.Dock="Right" Padding="3 0 3 0" x:Name="btnCancel" Command="{Binding CancelCommand, Mode=OneTime}" />
         </DockPanel>
         <Label Content="Name:" />
-        <TextBox Grid.Column="1" Style="{StaticResource txtBox}" Grid.ColumnSpan="3"
+        <TextBox Grid.Column="1" Style="{StaticResource txtBox}" Grid.ColumnSpan="3" SpellCheck.IsEnabled="True"
                  Text="{Binding Ingredient.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Qty:" Grid.Row="1" />

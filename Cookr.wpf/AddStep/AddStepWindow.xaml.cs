@@ -22,6 +22,21 @@ namespace Cookr.wpf.AddStep
         public AddStepWindow()
         {
             InitializeComponent();
+            DataContextChanged += (sender, e) =>
+            {
+                var oldVM = e.OldValue as AddStepViewModel;
+                var winVM = e.NewValue as AddStepViewModel;
+                if (winVM != null)
+                    winVM.WindowClosing += OnWindowClosing;
+                if (oldVM != null)
+                    oldVM.WindowClosing -= OnWindowClosing;
+            };
+        }
+
+        private void OnWindowClosing(object sender, bool e)
+        {
+            DialogResult = e;
+            Close();
         }
     }
 }

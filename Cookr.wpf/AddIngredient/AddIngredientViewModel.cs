@@ -29,14 +29,7 @@ namespace Cookr.wpf.AddIngredient
                 && Ingredient.UoM != null;
         }
 
-        private void AddIngredient()
-        {
-            WindowClosing?.Invoke(this, true);
-        }
-
-        private void CloseWindow()
-        {
-            WindowClosing?.Invoke(this, false);
-        }
+        private void AddIngredient() { WindowClosing?.Invoke(this, true); }
+        private void CloseWindow() { WindowClosing?.Invoke(this, false); }
     }
 }

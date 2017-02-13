@@ -1,13 +1,19 @@
 ﻿using Cookr.lib.Models;
+using Cookr.Lib.Commands;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace Cookr.wpf.AddStep
 {
     class AddStepViewModel
     {
         private int minutes = 0, hours = 0;
+        public event EventHandler<bool> WindowClosing;
 
+        public ICommand CloseWindowCommand => new RelayCommand(c => CloseWindow());
+        public ICommand AddStepCommand => new RelayCommand(c => AddStep(), p => CanAddStep());
         public Step Step { get; private set; }
         public int Hours
         {
@@ -27,7 +33,7 @@ namespace Cookr.wpf.AddStep
                 Step.Time = new TimeSpan(0, hours, minutes, 0, 0);
             }
         }
-        public IEnumerable<Ingredient> Ingredients => Step.Recipe?.Ingredients ?? new List<Ingredient>();
+        public IEnumerable<Ingredient> Ingredients => Step.Recipe?.Ingredients ?? new ObservableCollection<Ingredient>();
 
         [Obsolete("Use for the designer only", true)]
         public AddStepViewModel() 
@@ -54,5 +60,14 @@ namespace Cookr.wpf.AddStep
             Hours = 0;
             Minutes = 0;
         }
+
+        private bool CanAddStep()
+        {
+            return (Step.Instructions?.Length ?? 0) > 0 
+                && Step.Time.Ticks > 0;
+        }
+
+        private void AddStep() { WindowClosing?.Invoke(this, true); }
+        private void CloseWindow() { WindowClosing?.Invoke(this, false); }
     }
 }

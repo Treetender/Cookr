@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
@@ -13,8 +14,8 @@ namespace Cookr.lib.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
-        public List<Step> Steps { get; set; }
-        public List<Ingredient> Ingredients { get; set; }
+        public ObservableCollection<Step> Steps { get; set; }
+        public ObservableCollection<Ingredient> Ingredients { get; set; }
 
         public bool Equals(Recipe other)
         {
