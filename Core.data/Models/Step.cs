@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Cookr.data.Models
+namespace Core.data.Models
 {
     public class Step
     {
@@ -12,5 +12,6 @@ namespace Cookr.data.Models
 
         public Ingredient Ingredient { get; set; }
         public Recipe Recipe { get; set; }
+        public int RecipeId { get; set; }
     }
 }

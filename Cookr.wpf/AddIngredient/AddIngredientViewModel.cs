@@ -1,5 +1,5 @@
-﻿using Cookr.lib.Models;
-using Cookr.Lib.Commands;
+﻿using Cookr.Lib.Commands;
+using Core.data.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;

@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
-namespace Cookr.data.Models
+namespace Core.data.Models
 {
     public class Recipe : IEquatable<Recipe>
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Category { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
 
-        public List<Step> Steps { get; set; }
-        public List<Ingredient> Ingredients { get; set; }
-
-        [NotMapped]
-        public TimeSpan TotalTime => Steps == null ? new TimeSpan(0) : new TimeSpan(Steps.Sum(s => s.Time.Ticks));
+        public ObservableCollection<Step> Steps { get; set; }
+        public ObservableCollection<Ingredient> Ingredients { get; set; }
 
         public bool Equals(Recipe other)
         {
@@ -35,8 +32,8 @@ namespace Cookr.data.Models
         public override int GetHashCode()
         {
             return 13 * Id.GetHashCode()
-                 ^ 29 * Name.GetHashCode()
-                 ^ 17 * Category.GetHashCode();
+                 ^ 29 * (Name?.GetHashCode() ?? 0)
+                 ^ 17 * (Category?.GetHashCode() ?? 0);
         }
 
         public static bool operator ==(Recipe r1, Recipe r2)

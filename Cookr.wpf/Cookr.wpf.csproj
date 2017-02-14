@@ -255,6 +255,10 @@
       <Project>{c7e41dfa-5f69-407e-83c2-71929dd4c947}</Project>
       <Name>Cookr.lib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core.data\Core.data.csproj">
+      <Project>{e04ec13d-7071-4529-a849-a6d2e499288c}</Project>
+      <Name>Core.data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

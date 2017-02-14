@@ -17,11 +17,11 @@
                 </RibbonGroup>
                 <RibbonGroup Header="Ingredients">
                     <RibbonButton Label="Add" Command="{Binding AddIngredientCommand}" />
-                    <RibbonButton Label="Remove" />
+                    <RibbonButton Label="Remove" Command="{Binding RemoveIngredientCommand}" />
                 </RibbonGroup>
                 <RibbonGroup Header="Instructions">
-                    <RibbonButton Label="Add" />
-                    <RibbonButton Label="Remove" />
+                    <RibbonButton Label="Add" Command="{Binding AddStepCommand}" />
+                    <RibbonButton Label="Remove" Command="{Binding RemoveStepCommand}" />
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
@@ -39,10 +39,12 @@
                     </StackPanel>
                     <TabControl DockPanel.Dock="Bottom" TabStripPlacement="Bottom">
                         <TabItem Header="Ingredients">
-                            <ListView ItemsSource="{Binding SelectedRecipe.Ingredients, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <ListView ItemsSource="{Binding SelectedRecipe.Ingredients, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding SelectedIngredient, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </TabItem>
                         <TabItem Header="Instructions">
-                            <ListView ItemsSource="{Binding SelectedRecipe.Steps, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <ListView ItemsSource="{Binding SelectedRecipe.Steps, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding SelectedStep, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </TabItem>
                     </TabControl>
                 </DockPanel>

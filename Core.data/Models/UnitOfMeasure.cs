@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Cookr.data.Models
+namespace Core.data.Models
 {
     /// <summary>
     /// Represents a single unit of measure (e.g. cup, tsp, tbsp, ea)

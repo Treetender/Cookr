@@ -1,4 +1,8 @@
-﻿namespace Cookr.lib.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Core.data.Models
 {
     public class Category
     {

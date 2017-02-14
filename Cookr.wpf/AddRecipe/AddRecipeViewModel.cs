@@ -1,11 +1,10 @@
-﻿using Cookr.lib.Models;
-using Cookr.Lib.Commands;
+﻿using Cookr.Lib.Commands;
 using Cookr.wpf.AddIngredient;
 using Cookr.wpf.AddStep;
+using Core.data.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 
 namespace Cookr.wpf.AddRecipe

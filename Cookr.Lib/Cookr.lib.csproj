@@ -38,11 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Ingredient.cs" />
-    <Compile Include="Models\Recipe.cs" />
-    <Compile Include="Models\Step.cs" />
-    <Compile Include="Models\UnitOfMeasure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
