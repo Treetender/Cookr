@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace Core.data.DB
 {
+    /// <summary>
+    /// An abstract framework to represent the data used by all applications connecting to our databases
+    /// </summary>
     public abstract class DBManager : IDisposable
     {
         protected abstract Db DataContext { get; set; }
