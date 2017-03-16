@@ -2,6 +2,7 @@
 using Cookr.wpf.AddIngredient;
 using Cookr.wpf.AddRecipe;
 using Cookr.wpf.AddStep;
+using Core.data.DB;
 using Core.data.Models;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -11,7 +12,7 @@ namespace Cookr.wpf
 {
     public class RecipeViewModel 
     {
-        public ObservableCollection<Recipe> Recipes => DataManager.Instance.Recipes;
+        public ObservableCollection<Recipe> Recipes => SqliteDBManager.Instance.Recipes;
         public Recipe SelectedRecipe { get; set; }
         public Ingredient SelectedIngredient { get; set; }
         public Step SelectedStep { get; set; }
@@ -23,7 +24,6 @@ namespace Cookr.wpf
         public ICommand AddStepCommand => new RelayCommand(c => AddStep(), p => CanAddStep());
         public ICommand RemoveStepCommand => new RelayCommand(c => RemoveStep(), p => CanRemoveStep());
 
-
         private bool CanAddIngredient() => SelectedRecipe != null; 
         private void AddIngredient()
         {
@@ -32,7 +32,7 @@ namespace Cookr.wpf
             if(win.ShowDialog() ?? false)
             {
                 SelectedRecipe.Ingredients.Add(vm.Ingredient);
-                DataManager.Instance.SaveChangesToDB();
+                SqliteDBManager.Instance.SaveDBChanges();
             }
         }
 
@@ -44,7 +44,7 @@ namespace Cookr.wpf
             if(win.ShowDialog() ?? false)
             {
                 SelectedRecipe.Steps.Add(vm.Step);
-                DataManager.Instance.SaveChangesToDB();
+                SqliteDBManager.Instance.SaveDBChanges();
             }
         }
 
@@ -67,14 +67,14 @@ namespace Cookr.wpf
         private void RemoveIngredient()
         {
             SelectedRecipe.Ingredients.Remove(SelectedIngredient);
-            DataManager.Instance.SaveChangesToDB();
+            SqliteDBManager.Instance.SaveDBChanges();
         }
 
         private bool CanRemoveStep() => SelectedRecipe != null && SelectedStep != null;
         private void RemoveStep()
         {
             SelectedRecipe.Steps.Remove(SelectedStep);
-            DataManager.Instance.SaveChangesToDB();
+            SqliteDBManager.Instance.SaveDBChanges();
         }
       
     }

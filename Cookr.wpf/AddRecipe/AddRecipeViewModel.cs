@@ -23,7 +23,7 @@ namespace Cookr.wpf.AddRecipe
         public Recipe Recipe { get; private set; }
         public Step SelectedStep { get; set; }
         public Ingredient SelectedIngredient { get; set; }
-        public IEnumerable<Category> Categories => DataManager.Instance.Categories;
+        public IEnumerable<Category> Categories => SqliteDBManager.Instance.Categories;
 
         public AddRecipeViewModel()
         {

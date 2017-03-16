@@ -9,7 +9,7 @@ namespace Cookr.wpf.AddIngredient
     class AddIngredientViewModel
     {
         public event EventHandler<bool> WindowClosing;
-        public IEnumerable<UnitOfMeasure> UnitOfMeasures => DataManager.Instance.UnitOfMeasures;
+        public IEnumerable<UnitOfMeasure> UnitOfMeasures => SqliteDBManager.Instance.UoMs;
 
         public Ingredient Ingredient { get; private set; }
         public ICommand AddCommand => new RelayCommand(c => AddIngredient(), p => CanAddIngredient());
